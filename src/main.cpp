@@ -1,8 +1,4 @@
-#include <string>
-#include <iostream>
-
-#include "lexer.h"
-#include "util.h"
+#include "main.h"
 
 void lexsh() {
     std::printf("\033[33m[Lexer Test Shell]\033[m\n");
