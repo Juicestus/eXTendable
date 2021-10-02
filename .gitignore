@@ -1,0 +1,7 @@
+.DS_Store
+.vscode
+bin
+bin/src
+bin/src/*
+bin/src/*.o
+.build-cache
