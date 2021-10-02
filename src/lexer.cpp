@@ -40,7 +40,7 @@ void Lexer::skipWhiteSpace() {
     while (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') readChar();
     if (ch == '/' && peekChar() == '/') {
         while (ch != '\n') readChar();
-        skipWhiteSpace(); // sexy recursion
+        skipWhiteSpace();
     }
 }
 

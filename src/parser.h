@@ -11,8 +11,8 @@ namespace xt {
 
 class Parser;
 
-typedef Expression* (Parser::*prefixParseFn)();
-typedef Expression* (Parser::*infixParseFn)(Expression*);
+typedef Expression* (Parser::*PrefixParseFn)();
+typedef Expression* (Parser::*InfixParseFn)(Expression*);
 
 enum Precedence {
     LOWEST, EQUALS, LESSGREATER, SUM, PRODUCT, PREFIX, CALL, INDEX
@@ -64,13 +64,13 @@ private:
     void noPrefixParseFnError(TokenType type);
     void peekError(const TokenType& type);
 
-    Lexer l;
+    Lexer lexer;
 
     Token curToken;
     Token peekToken;
     
-    std::unordered_map<TokenType, prefixParseFn> prefixParseFns;
-    std::unordered_map<TokenType, infixParseFn> infixParseFns;
+    std::unordered_map<TokenType, PrefixParseFn> prefixParseFns;
+    std::unordered_map<TokenType, InfixParseFn> infixParseFns;
 
     std::vector<std::string> errors;
 };

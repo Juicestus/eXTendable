@@ -12,46 +12,24 @@ namespace xt {
 class Node {
 public:
     virtual ~Node() {}
-    ///*
     virtual std::string tokenLiteral() = 0;
     virtual std::string string() = 0;
     virtual std::string type() = 0;
-    //*/
-    /*
-    virtual std::string tokenLiteral();
-    virtual std::string string();
-    virtual std::string type();
-    */
 };
 
 class Statement : public Node {
 public:
-    ///*
     virtual void statementNode() = 0;
     virtual std::string tokenLiteral() = 0;
     virtual std::string string() = 0;
     virtual std::string type() = 0;
-    //*/
-    /*
-    virtual void statementNode();
-    virtual std::string tokenLiteral();
-    virtual std::string string();
-    virtual std::string type();
-    */
 };
 
 class Expression : public Node {
 public:
-    ///*
     virtual std::string tokenLiteral() = 0;
     virtual std::string string() = 0;
     virtual std::string type() = 0;
-    //*/
-    /*
-    virtual std::string tokenLiteral();
-    virtual std::string string();
-    virtual std::string type();
-    */
 };
 
 class Program : public Node {
