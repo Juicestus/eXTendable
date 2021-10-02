@@ -22,6 +22,11 @@ void lexsh() {
     }
 }
 
+void parsesh() {
+    std::printf("\033[33m[Parser Test Shell]\033[m\n");
+    
+}
+
 int main(int argc, char** argv) {
     printf("\033[1m\033[36mE\033[31mXT\033[36mENDABLE\033[32m C++\033[m");
     //printf("\033[1m  (C)\033[m Justus Languell\n");

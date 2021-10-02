@@ -3,6 +3,8 @@ TARGET_EXEC ?= xt
 BUILD_DIR ?= ./bin
 SRC_DIRS ?= ./src
 
+CPP_V ?= 11
+
 SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
@@ -10,7 +12,7 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CPPFLAGS ?= $(INC_FLAGS) -MMD -MP #-std=c++11
+CPPFLAGS ?= $(INC_FLAGS) -MMD -MP -std=c++$(CPP_V)
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
