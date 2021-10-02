@@ -1,4 +1,4 @@
-# E**XT**ENDABLE **C++**
+![logo](logo.png)
 
 C++ implementation of a simple programming language. Designed to be easily extendable with C++.
 
