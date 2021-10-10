@@ -68,7 +68,7 @@ VarStatement* Parser::parseVarStatement() {
     stmt->name.token = curToken;
     stmt->name.value = curToken.literal;
     
-    if (!expectPeek(IDENT)) {
+    if (!expectPeek(ASSIGN)) {
         delete stmt;
         return nullptr;
     }
@@ -405,6 +405,7 @@ void Parser::New(Lexer& lexer) {
     prefixParseFns[WHILE]    = &Parser::parseWhileExpression;
     prefixParseFns[FUNCTION] = &Parser::parseFunctionLiteral;
     prefixParseFns[LBRACKET] = &Parser::parseArrayLiteral;
+
     infixParseFns[PLUS]      = &Parser::parseInfixExpression;
     infixParseFns[MINUS]     = &Parser::parseInfixExpression;
     infixParseFns[SLASH]     = &Parser::parseInfixExpression;
