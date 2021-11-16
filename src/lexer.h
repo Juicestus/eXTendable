@@ -1,31 +1,47 @@
-#ifndef LEXER_H_
-#define LEXER_H_
+#ifndef XT_LEXER
+#define XT_LEXER
 
+#include <iostream> 
 #include <string>
+#include <string.h>
 
-#include "token.h"
+#include "exception.h"
 
-namespace xt {
+#ifdef __GNUC__
+#define vsprintf_s vsnprintf
+#define sprintf_s snprintf
+#define _strdup strdup
+#endif
 
 class Lexer {
 public:
-    void New(std::string &input);
-    Token nextToken();
+    Lexer(const std::string &input);
+    Lexer(Lexer *owner, int startChar, int endChar);
+    //~Lexer(void);
+    ~Lexer();
 
-private:
-    void readChar();
-    char peekChar();
-    std::string readIdentifier();
-    std::string readNumber();
-    std::string readString();
-    void skipWhiteSpace();
+    char currCh, nextCh;
+    int tk, tokenStart, tokenEnd, tokenLastEnd;
+    std::string tkStr;
 
-    std::string input;
-    int position;
-    int readPosition;
-    char ch;
+    void match(int expectedTk);
+    static std::string getTokenStr(int token);
+    void reset();
+
+    std::string getSubString(int pos);
+    Lexer *getSubLex(int lastPosition); 
+
+    std::string getPosition(int pos = -1);
+
+protected:
+    char *data; 
+    int dataStart, dataEnd; 
+    bool dataOwned;
+
+    int dataPos;
+
+    void getNextCh();
+    void getNextToken(); 
 };
-
-}
 
 #endif
