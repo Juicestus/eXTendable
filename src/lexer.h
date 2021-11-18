@@ -5,13 +5,7 @@
 #include <string>
 #include <string.h>
 
-#include "exception.h"
-
-#ifdef __GNUC__
-#define vsprintf_s vsnprintf
-#define sprintf_s snprintf
-#define _strdup strdup
-#endif
+#include "main.h"
 
 class Lexer {
 public:

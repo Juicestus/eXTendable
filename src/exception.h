@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "main.h"
+
 class Exception {
 public:
     std::string text;
