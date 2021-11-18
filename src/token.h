@@ -1,10 +1,6 @@
 #ifndef XT_TOKENS
 #define XT_TOKENS
 
-#include <iostream> 
-#include <string>
-#include <string.h>
-
 #include "main.h"
 
 enum TOKEN_TYPES {

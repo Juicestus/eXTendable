@@ -1,9 +1,6 @@
 #ifndef XT_EXCEPTION
 #define XT_EXCEPTION
 
-#include <iostream>
-#include <string>
-
 #include "main.h"
 
 class Exception {

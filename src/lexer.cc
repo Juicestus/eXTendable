@@ -259,15 +259,15 @@ void Lexer::getNextToken() {
             tk = TOK_EQUAL;
             getNextCh();
             if (currCh == '=') { 
-              tk = TOK_TYPEEQUAL;
-              getNextCh();
+                tk = TOK_TYPEEQUAL;
+                getNextCh();
             }
         } else if (tk == '!' && currCh == '=') { 
             tk = TOK_NEQUAL;
             getNextCh();
             if (currCh == '=') { 
-              tk = TOK_NTYPEEQUAL;
-              getNextCh();
+                tk = TOK_NTYPEEQUAL;
+                getNextCh();
             }
         } else if (tk == '<' && currCh == '=') {
             tk = TOK_LEQUAL;
@@ -276,8 +276,8 @@ void Lexer::getNextToken() {
             tk = TOK_LSHIFT;
             getNextCh();
             if (currCh=='=') { 
-              tk = TOK_LSHIFTEQUAL;
-              getNextCh();
+                tk = TOK_LSHIFTEQUAL;
+                getNextCh();
             }
         } else if (tk == '>' && currCh == '=') {
             tk = TOK_GEQUAL;
@@ -292,16 +292,16 @@ void Lexer::getNextToken() {
               tk = TOK_RSHIFTUNSIGNED;
               getNextCh();
             }
-        }  else if (tk == '+' && currCh == '=') {
+        } else if (tk == '+' && currCh == '=') {
             tk = TOK_PLUSEQUAL;
             getNextCh();
-        }  else if (tk == '-' && currCh == '=') {
+        } else if (tk == '-' && currCh == '=') {
             tk = TOK_MINUSEQUAL;
             getNextCh();
-        }  else if (tk == '+' && currCh == '+') {
+        } else if (tk == '+' && currCh == '+') {
             tk = TOK_PLUSPLUS;
             getNextCh();
-        }  else if (tk == '-' && currCh == '-') {
+        } else if (tk == '-' && currCh == '-') {
             tk = TOK_MINUSMINUS;
             getNextCh();
         } else if (tk == '&' && currCh == '=') {

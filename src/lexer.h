@@ -1,11 +1,11 @@
 #ifndef XT_LEXER
 #define XT_LEXER
 
-#include <iostream> 
-#include <string>
-#include <string.h>
-
 #include "main.h"
+
+#include "exception.h"
+#include "token.h"
+#include "utils.h"
 
 class Lexer {
 public:

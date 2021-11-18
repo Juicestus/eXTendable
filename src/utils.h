@@ -1,15 +1,6 @@
 #ifndef XT_UTILS
 #define XT_UTILS
 
-#include <iostream>
-#include <string>
-
-#include <memory>
-#include <stdexcept>
-
-#include <stdio.h>
-#include <string.h>
-
 #include "main.h"
 
 bool isWhitespace(char ch);
