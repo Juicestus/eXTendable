@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include <memory>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <vector>
 
+#include <assert.h>
 #include <stdio.h>
 #include <string.h>
+
+#define ASSERT(X) assert(X)
 
 #ifdef _WIN32
 #ifdef _DEBUG

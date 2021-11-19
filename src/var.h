@@ -4,8 +4,28 @@
 #include "main.h"
 
 #include "exception.h"
+#include "lexer.h"
 #include "token.h"
 #include "utils.h"
+
+// Frees the given link if it isn't owned by anything else
+#define CLEAN(x)                                                               \
+    {                                                                          \
+        Link* __v = x;                                                         \
+        if (__v && !__v->owned) delete __v;                                    \
+    }
+
+// Create a link to point to var and free the old link, but
+// this is clever - it tries to keep the old link if it's
+// not owned to save allocations.
+
+#define CREATE_LINK(LINK, VAR)                                                 \
+    {                                                                          \
+        if (!LINK || LINK->owned)                                              \
+            LINK = new CScriptVarLink(VAR);                                    \
+        else                                                                   \
+            LINK->replaceWith(VAR);                                            \
+    }
 
 enum VAR_FLAGS {
     VAR_UNDEFINED = 0,
@@ -85,40 +105,17 @@ class Var {
     void setArray();
     bool equals(Var* v);
 
-    // Put in implementation file
-    bool isInt() {
-        return (flags & VAR_INTEGER) != 0;
-    }
-    bool isDouble() {
-        return (flags & VAR_DOUBLE) != 0;
-    }
-    bool isString() {
-        return (flags & VAR_STRING) != 0;
-    }
-    bool isNumeric() {
-        return (flags & VAR_NUMERICMASK) != 0;
-    }
-    bool isFunction() {
-        return (flags & VAR_FUNCTION) != 0;
-    }
-    bool isObject() {
-        return (flags & VAR_OBJECT) != 0;
-    }
-    bool isArray() {
-        return (flags & VAR_ARRAY) != 0;
-    }
-    bool isNative() {
-        return (flags & VAR_NATIVE) != 0;
-    }
-    bool isUndefined() {
-        return (flags & VAR_VARTYPEMASK) == VAR_UNDEFINED;
-    }
-    bool isNull() {
-        return (flags & VAR_NULL) != 0;
-    }
-    bool isBasic() {
-        return firstChild == 0;
-    }
+    bool isInt();
+    bool isDouble();
+    bool isString();
+    bool isNumeric();
+    bool isFunction();
+    bool isObject();
+    bool isArray();
+    bool isNative();
+    bool isUndefined();
+    bool isNull();
+    bool isBasic();
 
     Var* mathsOp(Var* b, int op);
     void copyValue(Var* val);
