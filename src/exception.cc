@@ -1,5 +1,5 @@
 #include "exception.h"
 
-Exception::Exception(const std::string &exceptionText) {
+Exception::Exception(const std::string& exceptionText) {
     text = exceptionText;
 }

@@ -8,9 +8,9 @@
 #include "utils.h"
 
 class Lexer {
-public:
-    Lexer(const std::string &input);
-    Lexer(Lexer *owner, int startChar, int endChar);
+  public:
+    Lexer(const std::string& input);
+    Lexer(Lexer* owner, int startChar, int endChar);
     //~Lexer(void);
     ~Lexer();
 
@@ -23,19 +23,19 @@ public:
     void reset();
 
     std::string getSubString(int pos);
-    Lexer *getSubLex(int lastPosition); 
+    Lexer* getSubLex(int lastPosition);
 
     std::string getPosition(int pos = -1);
 
-protected:
-    char *data; 
-    int dataStart, dataEnd; 
+  protected:
+    char* data;
+    int dataStart, dataEnd;
     bool dataOwned;
 
     int dataPos;
 
     void getNextCh();
-    void getNextToken(); 
+    void getNextToken();
 };
 
 #endif

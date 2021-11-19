@@ -30,7 +30,7 @@ enum TOKEN_TYPES {
     TOK_OREQUAL,
     TOK_OROR,
     TOK_XOREQUAL,
-    // reserved words
+// reserved words
 #define TOK_R_LIST_START TOK_R_IF
     TOK_R_IF,
     TOK_R_ELSE,
@@ -48,7 +48,7 @@ enum TOKEN_TYPES {
     TOK_R_UNDEFINED,
     TOK_R_NEW,
 
-	TOK_R_LIST_END /* always the last entry */
+    TOK_R_LIST_END /* always the last entry */
 };
 
 #endif

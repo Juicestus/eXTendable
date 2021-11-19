@@ -4,9 +4,9 @@
 #include "main.h"
 
 class Exception {
-public:
+  public:
     std::string text;
-    Exception(const std::string &exceptionText);
+    Exception(const std::string& exceptionText);
 };
 
 #endif
