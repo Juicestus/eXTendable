@@ -1,0 +1,18 @@
+BasedOnStyle: LLVM    
+IndentWidth: 4    
+---
+Language: Cpp    
+DerivePointerAlignment: false    
+PointerAlignment: Left    
+ColumnLimit: 80    
+ContinuationIndentWidth: 8    
+AllowShortBlocksOnASingleLine: true    
+AllowShortCaseLabelsOnASingleLine: true    
+AllowShortEnumsOnASingleLine: true    
+AllowShortFunctionsOnASingleLine: false    
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse    
+AllowShortLoopsOnASingleLine: true    
+AllowShortIfStatementsOnASingleLine: true    
+IndentRequires: true    
+SpaceAfterTemplateKeyword: false    
+BreakBeforeBraces: Attach  

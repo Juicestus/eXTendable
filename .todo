@@ -1,4 +1,8 @@
-Operator equals (+=, -=, *=, /=, %=, etc)
-For loops
-Else if
-Floating point
+* work on the extendability part
+* figure out classes
+* compile on Windows
+    * MSVC
+    * MinGW
+* package and release 
+* vim & vscode extensions
+* installers / path scripts yk
