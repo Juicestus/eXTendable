@@ -1,7 +1,4 @@
-#include "exception.h"
-#include "lexer.h"
-#include "token.h"
-#include "utils.h"
+#include "main.h"
 
 int main(int argc, char** argv) {
     if (argc < 2) {
@@ -9,5 +6,10 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    std::string code = readFile(argv[1]);
+    XT* xt = new XT();
+    configureBuiltins(xt);
+
+    try {
+        xt->execute(readFile(argv[1]));
+    } catch (Exception* e) { std::printf("ERROR: %s\n", e->text.c_str()); }
 }

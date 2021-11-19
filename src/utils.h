@@ -1,7 +1,7 @@
 #ifndef XT_UTILS
 #define XT_UTILS
 
-#include "main.h"
+#include "common.h"
 
 bool isWhitespace(char ch);
 bool isNumeric(char ch);

@@ -1,7 +1,7 @@
 #ifndef XT_VAR
 #define XT_VAR
 
-#include "main.h"
+#include "common.h"
 
 #include "exception.h"
 #include "lexer.h"

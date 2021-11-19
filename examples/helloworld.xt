@@ -1,1 +1,1 @@
-print("Hello World");
+Console.println("Hello World");

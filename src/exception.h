@@ -1,7 +1,7 @@
 #ifndef XT_EXCEPTION
 #define XT_EXCEPTION
 
-#include "main.h"
+#include "common.h"
 
 class Exception {
   public:

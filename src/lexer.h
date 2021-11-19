@@ -1,7 +1,7 @@
 #ifndef XT_LEXER
 #define XT_LEXER
 
-#include "main.h"
+#include "common.h"
 
 #include "exception.h"
 #include "token.h"

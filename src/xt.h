@@ -1,7 +1,7 @@
 #ifndef XT_XT
 #define XT_XT
 
-#include "main.h"
+#include "common.h"
 
 #include "exception.h"
 #include "lexer.h"

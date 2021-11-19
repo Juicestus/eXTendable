@@ -1,7 +1,7 @@
 #ifndef XT_TOKENS
 #define XT_TOKENS
 
-#include "main.h"
+#include "common.h"
 
 enum TOKEN_TYPES {
     TOK_EOF = 0,

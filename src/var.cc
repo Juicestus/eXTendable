@@ -606,8 +606,8 @@ void Var::getJSON(std::ostringstream& destination,
 }
 
 void Var::setCallback(Callback callback, void* userdata) {
-    callback = callback;
-    callbackUserData = userdata;
+    this->callback = callback;
+    this->callbackUserData = userdata;
 }
 
 Var* Var::ref() {
