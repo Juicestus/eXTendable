@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <fstream>
 #include <iostream>
 #include <memory>
 #include <sstream>
@@ -14,6 +15,8 @@
 
 #define ASSERT(X) assert(X)
 
+#define XT_LOOP_MAX_ITERATIONS 1000000000
+
 #ifdef _WIN32
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
@@ -21,8 +24,6 @@
 #include <stdlib.h>
 #endif
 #endif
-
-#define TINYJS_CALL_STACK
 
 #ifndef TRACE
 #define TRACE printf

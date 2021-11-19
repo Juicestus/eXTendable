@@ -16,6 +16,7 @@ class XT {
 
     void execute(const std::string& code);
     Link evaluateComplex(const std::string& code);
+    std::string evaluate(const std::string& code);
 
     /**
         \code

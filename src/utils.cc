@@ -97,3 +97,10 @@ std::string stringFormat(const std::string& format, Args... args) {
     std::snprintf(buf.get(), size, format.c_str(), args...);
     return std::string(buf.get(), buf.get() + size - 1);
 }
+
+std::string readFile(const std::string path) {
+    std::ifstream inputFile(path);
+    if (!inputFile.is_open()) std::printf("Could not open file\n");
+    return std::string(std::istreambuf_iterator<char>(inputFile),
+    				   std::istreambuf_iterator<char>());
+}

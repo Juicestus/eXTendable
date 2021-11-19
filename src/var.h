@@ -22,7 +22,7 @@
 #define CREATE_LINK(LINK, VAR)                                                 \
     {                                                                          \
         if (!LINK || LINK->owned)                                              \
-            LINK = new CScriptVarLink(VAR);                                    \
+            LINK = new Link(VAR);                                    \
         else                                                                   \
             LINK->replaceWith(VAR);                                            \
     }
@@ -94,7 +94,6 @@ class Var {
 
     int getInt();
     bool getBool();
-    //{ return getInt() != 0; }
     double getDouble();
     const std::string& getString();
     std::string getParsableString();

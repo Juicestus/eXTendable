@@ -19,4 +19,6 @@ std::unique_ptr<T> make_unique(Args&&... args);
 template<typename... Args>
 std::string stringFormat(const std::string& format, Args... args);
 
+std::string readFile(const std::string path);
+
 #endif

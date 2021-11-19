@@ -275,6 +275,10 @@ int Var::getInt() {
     return 0;
 }
 
+bool Var::getBool() {
+    return getInt() != 0;
+}
+
 double Var::getDouble() {
     if (isDouble()) return doubleData;
     if (isInt()) return intData;
