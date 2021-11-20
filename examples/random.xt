@@ -1,0 +1,20 @@
+var min = 1;
+var max = 10;
+
+var generated = Math.randInt(min, max);
+
+var correct = false;
+while (!correct) {
+    var input = Numbers.parseInt(Console.promptln(
+            "Enter a number between " + min + " and " + max + ": "));
+    if (input < min || input > max) {
+        Console.println("Invalid input!");
+    } else if (input < generated) {
+        Console.println("Too low!");
+    } else if (input > generated) {
+        Console.println("Too high!");
+    } else {
+        Console.println("Correct!");
+        correct = true;
+    }
+}
