@@ -1,0 +1,2 @@
+var x = Console.promptln("Enter your name: ");
+Console.println("Hello, " + x);

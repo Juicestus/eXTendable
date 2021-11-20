@@ -10,6 +10,14 @@
 #include "var.h"
 #include "xt.h"
 
-void configureBuiltins(XT* xt);
+#include "lib/lib-array.h"
+#include "lib/lib-console.h"
+#include "lib/lib-json.h"
+#include "lib/lib-lang.h"
+#include "lib/lib-math.h"
+#include "lib/lib-numbers.h"
+#include "lib/lib-string.h"
+
+void loadStandardLibrary(XT *xt);
 
 #endif

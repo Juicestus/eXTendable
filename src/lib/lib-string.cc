@@ -1,4 +1,4 @@
-#include "string.h"
+#include "lib-string.h"
 
 void builtinStringIndexOf(Var* c, void*) {
     std::string str = c->getParameter("this")->getString();

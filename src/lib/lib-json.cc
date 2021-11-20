@@ -1,4 +1,6 @@
-#include "json.h"
+#include "lib-json.h"
+
+#include "lib-lang.h"
 
 void builtinJSONStringify(Var* c, void*) {
     std::ostringstream result;
@@ -9,5 +11,6 @@ void builtinJSONStringify(Var* c, void*) {
 void loadJSONLibrary(XT* xt) {
     xt->addNative("function JSON.stringify(obj, replacer)",
                   builtinJSONStringify, 0);
-   // JSON.parse is left out as you can (unsafely!) use eval instead
+   xt->addNative("function JSON.parse(code)",
+                  builtinEval, 0);
 }

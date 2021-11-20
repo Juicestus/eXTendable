@@ -1,4 +1,4 @@
-#include "math.h"
+#include "lib-math.h"
 
 #ifdef _MSC_VER
 namespace {

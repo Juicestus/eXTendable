@@ -1,5 +1,5 @@
-#ifndef XT_LIB_MATH
-#define XT_LIB_MATH
+#ifndef XT_LIB_CONSOLE
+#define XT_LIB_CONSOLE
 
 #include "../common.h"
 

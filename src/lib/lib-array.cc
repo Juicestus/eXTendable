@@ -1,4 +1,4 @@
-#include "arrray.h"
+#include "lib-array.h"
 
 void builtinArrayContains(Var* c, void* data) {
     Var* obj = c->getParameter("obj");
