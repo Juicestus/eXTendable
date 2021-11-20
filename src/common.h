@@ -31,6 +31,8 @@
 #define TRACE printf
 #endif
 
+#undef  __STRICT_ANSI__
+
 #ifdef __GNUC__
 #define vsprintf_s vsnprintf
 #define sprintf_s snprintf

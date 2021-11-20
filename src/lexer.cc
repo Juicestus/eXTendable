@@ -1,7 +1,7 @@
 #include "lexer.h"
 
 Lexer::Lexer(const std::string& input) {
-    data = strdup(input.c_str());
+    data = _strdup(input.c_str());
     dataOwned = true;
     dataStart = 0;
     dataEnd = strlen(data);
