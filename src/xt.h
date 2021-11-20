@@ -5,6 +5,7 @@
 
 #include "exception.h"
 #include "lexer.h"
+#include "lib.h"
 #include "token.h"
 #include "utils.h"
 #include "var.h"
@@ -13,6 +14,7 @@ class XT {
   public:
     XT();
     ~XT();
+
 
     void execute(const std::string& code);
     Link evaluateComplex(const std::string& code);
@@ -32,6 +34,8 @@ class XT {
        0); \endcode
     */
     void addNative(const std::string& funcDesc, Callback ptr, void* userdata);
+
+    void loadLibrary(std::string name);
 
     Var* getScriptVariable(const std::string& path);
     const std::string* getVariable(const std::string& path);

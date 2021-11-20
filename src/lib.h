@@ -18,6 +18,4 @@
 #include "lib/lib-numbers.h"
 #include "lib/lib-string.h"
 
-void loadStandardLibrary(XT *xt);
-
 #endif

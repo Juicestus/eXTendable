@@ -28,6 +28,8 @@
 #define builtinReturnInt(a) (c->getReturnVar()->setInt(a))
 #define builtinReturnDouble(a) (c->getReturnVar()->setDouble(a))
 
+class XT;
+
 void loadMathLibrary(XT* xt);
 
 #endif

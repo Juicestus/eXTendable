@@ -1,3 +1,5 @@
+import("Console");
+
 for (var i = 99; i > 0; i--) {
     if (i > 1) {
         Console.print(i + " bottles of beer on the wall, " 

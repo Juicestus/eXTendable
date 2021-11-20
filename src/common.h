@@ -44,5 +44,6 @@
 #define XT_PROTOTYPE_CLASS "prototype"
 #define XT_TEMP_NAME ""
 #define XT_BLANK_DATA ""
+#define XT_IMPORT_FUNCTION "import"
 
 #endif

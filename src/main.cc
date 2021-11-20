@@ -7,7 +7,6 @@ int main(int argc, char** argv) {
     }
 
     XT* xt = new XT();
-    loadStandardLibrary(xt);
 
     try {
         xt->execute(readFile(argv[1]));

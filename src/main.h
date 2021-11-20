@@ -3,7 +3,6 @@
 
 #include "common.h"
 
-#include "builtin.h"
 #include "exception.h"
 #include "lexer.h"
 #include "token.h"

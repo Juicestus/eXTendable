@@ -12,6 +12,8 @@
 
 void builtinEval(Var* c, void* data);
 
+class XT;
+
 void loadLangLibrary(XT* xt);
 
 #endif

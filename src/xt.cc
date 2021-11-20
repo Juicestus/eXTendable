@@ -1,5 +1,7 @@
 #include "xt.h"
 
+void importDecl(Var* c, void*) {}
+
 XT::XT() {
     l = 0;
     root = (new Var(XT_BLANK_DATA, VAR_OBJECT))->ref();
@@ -9,6 +11,8 @@ XT::XT() {
     root->addChild("String", stringClass);
     root->addChild("Array", arrayClass);
     root->addChild("Object", objectClass);
+
+    addNative("function import(name)", importDecl, 0);
 }
 
 XT::~XT() {
@@ -27,6 +31,7 @@ XT::~XT() {
 void XT::trace() {
     root->trace();
 }
+
 
 void XT::execute(const std::string& code) {
     Lexer* oldLex = l;
@@ -146,6 +151,23 @@ void XT::addNative(const std::string& funcDesc, Callback ptr, void* userdata) {
     base->addChild(funcName, funcVar);
 }
 
+void XT::loadLibrary(std::string name) {
+    if (name == "Array")
+        loadArrayLibrary(this);
+    else if (name == "Console")
+        loadConsoleLibrary(this);
+    else if (name == "JSON")
+        loadJSONLibrary(this);
+    else if (name == "Lang")
+        loadLangLibrary(this);
+    else if (name == "Math")
+        loadMathLibrary(this);
+    else if (name == "Numbers")
+        loadNumbersLibrary(this);
+    else if (name == "String")
+        loadStringLibrary(this);
+}
+
 Link* XT::parseFunctionDefinition() {
     // actually parse a function...
     l->match(TOK_R_FUNCTION);
@@ -210,6 +232,11 @@ Link* XT::functionCall(bool& execute, Link* function, Var* parent) {
 
         if (function->var->isNative()) {
             ASSERT(function->var->callback);
+            if (function->name == XT_IMPORT_FUNCTION) {
+                std::string lib = functionRoot->getParameter("name")->getString();
+                loadLibrary(lib);
+            }
+
             function->var->callback(functionRoot,
                                     function->var->callbackUserData);
         } else {

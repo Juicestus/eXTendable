@@ -1,3 +1,7 @@
+import("Console");
+import("Math");
+import("Numbers");
+
 var min = 1;
 var max = 10;
 

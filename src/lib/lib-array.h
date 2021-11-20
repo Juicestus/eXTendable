@@ -10,6 +10,8 @@
 #include "../var.h"
 #include "../xt.h"
 
+class XT;
+
 void loadArrayLibrary(XT* xt);
 
 #endif
