@@ -1,0 +1,7 @@
+import("Console");
+
+var a = null;
+var b = undefined;
+
+Console.println(a == b);
+Console.println(a === b);
