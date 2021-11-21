@@ -2,7 +2,23 @@
 
 void importDecl(Var* c, void*) {}
 
-XT::XT() {
+void XT::setPath(const std::string& path) {
+    this->path = path;
+
+    char delim;
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+    delim = '\\';
+#else
+    delim = '/';
+#endif
+
+    const int lastDelimID = path.rfind(delim);
+    if (std::string::npos != lastDelimID)
+        this->directory = path.substr(0, lastDelimID);
+}
+
+XT::XT(const std::string& path) {
+    setPath(path);
     l = 0;
     root = (new Var(XT_BLANK_DATA, VAR_OBJECT))->ref();
     stringClass = (new Var(XT_BLANK_DATA, VAR_OBJECT))->ref();
@@ -151,8 +167,13 @@ void XT::addNative(const std::string& funcDesc, Callback ptr, void* userdata) {
     base->addChild(funcName, funcVar);
 }
 
-void XT::loadLibrary(std::string name) {
-    if (name == "Array")
+void XT::loadLibrary(const std::string& name) {
+    std::string path = this->directory + "/" + name;
+
+    if (path.substr(path.length() - 3) == ".xt")
+        execute(readFile(path));
+
+    else if (name == "Array")
         loadArrayLibrary(this);
     else if (name == "Console")
         loadConsoleLibrary(this);
@@ -166,6 +187,8 @@ void XT::loadLibrary(std::string name) {
         loadNumbersLibrary(this);
     else if (name == "String")
         loadStringLibrary(this);
+    else
+        execute(readFile(path + ".xt"));
 }
 
 Link* XT::parseFunctionDefinition() {
@@ -429,8 +452,8 @@ Link* XT::factor(bool& execute) {
     if (l->tk == TOK_R_FUNCTION) {
         Link* funcVar = parseFunctionDefinition();
         if (funcVar->name != XT_TEMP_NAME)
-            TRACE("Functions not defined at statement-level are not meant to "
-                  "have a name");
+            //TRACE("Functions not defined at statement-level are not meant to "
+            //"have a name");
         return funcVar;
     }
     if (l->tk == TOK_R_NEW) {

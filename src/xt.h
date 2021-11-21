@@ -12,9 +12,13 @@
 
 class XT {
   public:
-    XT();
+    XT(const std::string& path);
     ~XT();
 
+    void setPath(const std::string& path);
+
+    std::string path;
+    std::string directory;
 
     void execute(const std::string& code);
     Link evaluateComplex(const std::string& code);
@@ -35,7 +39,7 @@ class XT {
     */
     void addNative(const std::string& funcDesc, Callback ptr, void* userdata);
 
-    void loadLibrary(std::string name);
+    void loadLibrary(const std::string& name);
 
     Var* getScriptVariable(const std::string& path);
     const std::string* getVariable(const std::string& path);

@@ -6,7 +6,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    XT* xt = new XT();
+    XT* xt = new XT(argv[1]);
 
     try {
         xt->execute(readFile(argv[1]));

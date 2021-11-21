@@ -1,0 +1,6 @@
+import([
+    "Console",
+    "package.xt"
+]);
+
+Console.println(f(5));
