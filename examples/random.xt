@@ -1,6 +1,4 @@
-import("Console");
-import("Math");
-import("Numbers");
+import(["Console", "Math", "Numbers"]);
 
 var min = 1;
 var max = 10;

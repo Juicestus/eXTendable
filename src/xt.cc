@@ -233,8 +233,14 @@ Link* XT::functionCall(bool& execute, Link* function, Var* parent) {
         if (function->var->isNative()) {
             ASSERT(function->var->callback);
             if (function->name == XT_IMPORT_FUNCTION) {
-                std::string lib = functionRoot->getParameter("name")->getString();
-                loadLibrary(lib);
+                Var* param = functionRoot->getParameter("name");
+                if (param->isArray()) {
+                    for (int i = 0; i < param->getArrayLength(); i++) {
+                        Var* lib = param->getArrayIndex(i);
+                        if (lib->isString()) loadLibrary(lib->getString());
+                    }
+                } else if (param->isString()) 
+                    loadLibrary(param->getString());
             }
 
             function->var->callback(functionRoot,
