@@ -1,8 +1,4 @@
-* work on the extendability part
-* figure out classes
-* compile on Windows
-    * MSVC
-    * MinGW
-* package and release 
-* vim & vscode extensions
-* installers / path scripts yk
+* windows installer
+* importing directories
+* importing native functions
+* native function development
