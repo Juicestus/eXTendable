@@ -65,6 +65,9 @@ std::string Lexer::getTokenStr(int token) {
     case TOK_RSHIFTEQUAL: return ">>=";
     case TOK_PLUSEQUAL: return "+=";
     case TOK_MINUSEQUAL: return "-=";
+    case TOK_TIMESEQUAL: return "*=";
+    case TOK_DIVIDEEQUAL: return "/=";
+    case TOK_MODEQUAL: return "%=";
     case TOK_PLUSPLUS: return "++";
     case TOK_MINUSMINUS: return "--";
     case TOK_ANDEQUAL: return "&=";
@@ -88,6 +91,7 @@ std::string Lexer::getTokenStr(int token) {
     case TOK_R_NULL: return "null";
     case TOK_R_UNDEFINED: return "undefined";
     case TOK_R_NEW: return "new";
+    case TOK_R_CONST: return "const";
     }
 
     return "?[" + std::to_string(token) + "]";
@@ -162,6 +166,8 @@ void Lexer::getNextToken() {
             tk = TOK_R_UNDEFINED;
         else if (tkStr == "new")
             tk = TOK_R_NEW;
+        else if (tkStr == "const")
+            tk = TOK_R_CONST;
 
     } else if (isNumeric(currCh)) {
         bool isHex = false;
@@ -312,6 +318,15 @@ void Lexer::getNextToken() {
             getNextCh();
         } else if (tk == '-' && currCh == '=') {
             tk = TOK_MINUSEQUAL;
+            getNextCh();
+        } else if (tk == '*' && currCh == '=') {
+            tk = TOK_TIMESEQUAL;
+            getNextCh();
+        } else if (tk == '%' && currCh == '=') {
+            tk = TOK_MODEQUAL;
+            getNextCh();
+        } else if (tk == '/' && currCh == '=') {
+            tk = TOK_DIVIDEEQUAL;
             getNextCh();
         } else if (tk == '+' && currCh == '+') {
             tk = TOK_PLUSPLUS;

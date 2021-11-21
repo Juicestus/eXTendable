@@ -4,6 +4,7 @@ Link::Link(Var* var, const std::string& name) {
 #if DEBUG_MEMORY
     mark_allocated(this);
 #endif
+    this->constant = false;
     this->name = name;
     this->nextSibling = 0;
     this->prevSibling = 0;
@@ -15,6 +16,7 @@ Link::Link(const Link& link) {
 #if DEBUG_MEMORY
     mark_allocated(this);
 #endif
+    this->constant = false;
     this->name = link.name;
     this->nextSibling = 0;
     this->prevSibling = 0;
@@ -30,6 +32,7 @@ Link::~Link() {
 }
 
 void Link::replaceWith(Var* newVar) {
+    if (constant && !var->isUndefined()) return;
     Var* oldVar = var;
     var = newVar->ref();
     oldVar->unref();
@@ -50,6 +53,10 @@ void Link::setIntName(int n) {
     char sIdx[64];
     sprintf_s(sIdx, sizeof(sIdx), "%d", n);
     name = sIdx;
+}
+
+void Link::makeConst() {
+    this->constant = true;
 }
 
 Var::Var() {

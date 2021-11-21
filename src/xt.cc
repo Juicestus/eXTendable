@@ -667,7 +667,8 @@ Link* XT::ternary(bool& execute) {
 
 Link* XT::base(bool& execute) {
     Link* lhs = ternary(execute);
-    if (l->tk == '=' || l->tk == TOK_PLUSEQUAL || l->tk == TOK_MINUSEQUAL) {
+    if (l->tk == '=' || l->tk == TOK_PLUSEQUAL || l->tk == TOK_MINUSEQUAL
+        || l->tk == TOK_TIMESEQUAL || l->tk == TOK_DIVIDEEQUAL || l->tk == TOK_MODEQUAL) {
         /* If we're assigning to this and we don't have a parent,
          * add it to the symbol table root as per JavaScript. */
         if (execute && !lhs->owned) {
@@ -691,8 +692,17 @@ Link* XT::base(bool& execute) {
             } else if (op == TOK_MINUSEQUAL) {
                 Var* res = lhs->var->mathsOp(rhs->var, '-');
                 lhs->replaceWith(res);
-            } else
-                ASSERT(0);
+            } else if (op == TOK_TIMESEQUAL) {
+                Var* res = lhs->var->mathsOp(rhs->var, '*');
+                lhs->replaceWith(res);
+            } else if (op == TOK_DIVIDEEQUAL) {
+                Var* res = lhs->var->mathsOp(rhs->var, '/');
+                lhs->replaceWith(res);
+            } else if (op == TOK_MODEQUAL) {
+                Var* res = lhs->var->mathsOp(rhs->var, '%');
+                lhs->replaceWith(res);
+            } else ;
+                //ASSERT(0);
         }
         CLEAN(rhs);
     }
@@ -727,11 +737,10 @@ void XT::statement(bool& execute) {
     } else if (l->tk == ';') {
         /* Empty statement - to allow things like ;;; */
         l->match(';');
-    } else if (l->tk == TOK_R_VAR) {
-        /* variable creation. TODO - we need a better way of parsing the left
-         * hand side. Maybe just have a flag called can_create_var that we
-         * set and then we parse as if we're doing a normal equals.*/
-        l->match(TOK_R_VAR);
+    //} else if (l->tk == TOK_R_VAR) {
+    } else if (l->tk == TOK_R_VAR || l->tk == TOK_R_CONST) {
+        int m = l->tk;
+        l->match(m);
         while (l->tk != ';') {
             Link* a = 0;
             if (execute) a = scopes.back()->findChildOrCreate(l->tkStr);
@@ -745,6 +754,10 @@ void XT::statement(bool& execute) {
                 }
                 l->match(TOK_ID);
             }
+
+            if (m == TOK_R_CONST)
+                a->makeConst();
+
             // sort out initialiser
             if (l->tk == '=') {
                 l->match('=');

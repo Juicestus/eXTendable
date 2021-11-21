@@ -54,6 +54,8 @@ class Link {
     Link* prevSibling;
     Var* var;
     bool owned;
+    bool constant;
+    bool defined;
 
     Link(Var* var, const std::string& name = "");
     Link(const Link& link);
@@ -62,6 +64,8 @@ class Link {
     void replaceWith(Link* newVar);
     int getIntName();
     void setIntName(int n);
+
+    void makeConst();
 };
 
 class Var {

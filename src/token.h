@@ -23,6 +23,9 @@ enum TOKEN_TYPES {
     TOK_RSHIFTEQUAL,
     TOK_PLUSEQUAL,
     TOK_MINUSEQUAL,
+    TOK_TIMESEQUAL,
+    TOK_DIVIDEEQUAL,
+    TOK_MODEQUAL,
     TOK_PLUSPLUS,
     TOK_MINUSMINUS,
     TOK_ANDEQUAL,
@@ -47,6 +50,7 @@ enum TOKEN_TYPES {
     TOK_R_NULL,
     TOK_R_UNDEFINED,
     TOK_R_NEW,
+    TOK_R_CONST,
 
     TOK_R_LIST_END /* always the last entry */
 };

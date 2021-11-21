@@ -1,0 +1,11 @@
+import("Console");
+
+var x = 1;
+x = 5;
+
+Console.println(x);
+
+const y = 1;
+y = 5;
+
+Console.println(y);
