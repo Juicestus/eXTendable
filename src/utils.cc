@@ -100,7 +100,6 @@ std::string stringFormat(const std::string& format, Args... args) {
 
 std::string readFile(const std::string& path) {
     std::ifstream inputFile(path);
-    std::cout << path << std::endl;
     if (!inputFile.is_open()) std::printf("Could not open file\n");
     return std::string(std::istreambuf_iterator<char>(inputFile),
     				   std::istreambuf_iterator<char>());
