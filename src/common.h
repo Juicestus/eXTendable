@@ -2,7 +2,6 @@
 #define COMMON_H
 
 #include <cstdlib>
-#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -28,6 +27,8 @@
 #include <crtdbg.h>
 #include <stdlib.h>
 #endif
+#else
+#include <filesystem>
 #endif
 
 #ifndef TRACE
