@@ -19,6 +19,24 @@ std::unique_ptr<T> make_unique(Args&&... args);
 template<typename... Args>
 std::string stringFormat(const std::string& format, Args... args);
 
-std::string readFile(const std::string path);
+std::string readFile(const std::string& path);
+
+std::string exeFilename();
+
+class UtilPath {
+public:
+    std::string path;
+
+    UtilPath() : path("") {}
+    UtilPath(const std::string& path) : path(path) {}
+
+    std::string getPath();
+    std::string getFilename();
+    std::string getExtension();
+    std::string getBasename();
+    std::string getDirname();
+
+    std::string printable();
+};
 
 #endif

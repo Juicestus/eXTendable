@@ -2,6 +2,7 @@
 #define COMMON_H
 
 #include <cstdlib>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -14,12 +15,14 @@
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #define ASSERT(X) assert(X)
 
 #define XT_LOOP_MAX_ITERATIONS 1000000000
 
 #ifdef _WIN32
+#include <windows.h>
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>

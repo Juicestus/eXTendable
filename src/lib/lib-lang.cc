@@ -3,7 +3,7 @@
 void builtinExec(Var* c, void* data) {
     XT* xt = (XT*)data;
     std::string str = c->getParameter("code")->getString();
-    xt->execute(str);
+    xt->execute(str, false);
 }
 
 void builtinEval(Var* c, void* data) {

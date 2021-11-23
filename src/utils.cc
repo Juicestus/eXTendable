@@ -98,9 +98,47 @@ std::string stringFormat(const std::string& format, Args... args) {
     return std::string(buf.get(), buf.get() + size - 1);
 }
 
-std::string readFile(const std::string path) {
+std::string readFile(const std::string& path) {
     std::ifstream inputFile(path);
+    std::cout << path << std::endl;
     if (!inputFile.is_open()) std::printf("Could not open file\n");
     return std::string(std::istreambuf_iterator<char>(inputFile),
     				   std::istreambuf_iterator<char>());
+}
+
+std::string exeFilename() {
+    char buffer[1024];
+#ifdef _WIN32
+    GetModuleFileName(NULL, buffer, 1024);
+#else
+    getcwd(buffer, 256); 
+#endif
+    return std::string(buffer);
+}
+
+std::string UtilPath::getPath() {
+    return path;
+}
+
+std::string UtilPath::getFilename() {
+    return path.substr(path.find_last_of("/\\") + 1);
+}
+
+std::string UtilPath::getExtension() {
+    return getFilename().substr(getFilename().find_last_of(".") + 1);
+}
+
+std::string UtilPath::getBasename() {
+    return getFilename().substr(0, getFilename().find_last_of("."));
+}
+
+std::string UtilPath::getDirname() {
+    std::string fn = path.substr(0, path.find_last_of("/\\"));
+    return fn == getFilename() ? "." : fn;
+}
+
+std::string UtilPath::printable() {
+    return path + "\nDir -> " + getDirname() + "\nFile -> " 
+            + getFilename() + "\nExt -> " + getExtension() 
+            + "\nBase -> " + getBasename() + "\n"; 
 }

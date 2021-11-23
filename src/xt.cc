@@ -2,23 +2,8 @@
 
 void importDecl(Var* c, void*) {}
 
-void XT::setPath(const std::string& path) {
-    this->path = path;
-
-    char delim;
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
-    delim = '\\';
-#else
-    delim = '/';
-#endif
-
-    const int lastDelimID = path.rfind(delim);
-    if (std::string::npos != lastDelimID)
-        this->directory = path.substr(0, lastDelimID);
-}
-
 XT::XT(const std::string& path) {
-    setPath(path);
+    this->path = UtilPath(path);
     l = 0;
     root = (new Var(XT_BLANK_DATA, VAR_OBJECT))->ref();
     stringClass = (new Var(XT_BLANK_DATA, VAR_OBJECT))->ref();
@@ -49,10 +34,11 @@ void XT::trace() {
 }
 
 
-void XT::execute(const std::string& code) {
+void XT::execute(const std::string& code, const bool main) {
     Lexer* oldLex = l;
     std::vector<Var*> oldScopes = scopes;
-    l = new Lexer(code);
+    l = new Lexer((main ? "function main() {}\n" : "") 
+            + code + (main ? "\nmain();" : ""));
 #ifdef TINYJS_CALL_STACK
     call_stack.clear();
 #endif
@@ -168,10 +154,10 @@ void XT::addNative(const std::string& funcDesc, Callback ptr, void* userdata) {
 }
 
 void XT::loadLibrary(const std::string& name) {
-    std::string path = this->directory + "/" + name;
+    std::string pathify = this->path.getDirname() + '/' + name;
 
-    if (path.substr(path.length() - 3) == ".xt")
-        execute(readFile(path));
+    if (pathify.substr(pathify.length() - 3) == ".xt")
+        execute(readFile(pathify), false);
 
     else if (name == "Array")
         loadArrayLibrary(this);
@@ -188,7 +174,7 @@ void XT::loadLibrary(const std::string& name) {
     else if (name == "String")
         loadStringLibrary(this);
     else
-        execute(readFile(path + ".xt"));
+        execute(readFile(pathify + ".xt"), false);
 }
 
 Link* XT::parseFunctionDefinition() {

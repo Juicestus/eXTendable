@@ -15,12 +15,9 @@ class XT {
     XT(const std::string& path);
     ~XT();
 
-    void setPath(const std::string& path);
+    UtilPath path;
 
-    std::string path;
-    std::string directory;
-
-    void execute(const std::string& code);
+    void execute(const std::string& code, const bool main);
     Link evaluateComplex(const std::string& code);
     std::string evaluate(const std::string& code);
 

@@ -4,3 +4,7 @@ import([
 ]);
 
 Console.println(f(5));
+
+function main() {
+    Console.println("import.xt is the main package");
+}

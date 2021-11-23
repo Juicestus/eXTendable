@@ -9,6 +9,6 @@ int main(int argc, char** argv) {
     XT* xt = new XT(argv[1]);
 
     try {
-        xt->execute(readFile(argv[1]));
+        xt->execute(readFile(argv[1]), true);
     } catch (Exception* e) { std::printf("ERROR: %s\n", e->text.c_str()); }
 }
