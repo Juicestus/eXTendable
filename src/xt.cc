@@ -157,7 +157,7 @@ void XT::loadLibrary(const std::string& name) {
     std::string pathify = this->path.getDirname() + '/' + name;
 
     if (pathify.substr(pathify.length() - 3) == ".xt")
-        execute(readFile(pathify), false);
+        execute(ignoreShebang(readFile(pathify)), false);
 
     else if (name == "Array")
         loadArrayLibrary(this);
@@ -174,7 +174,7 @@ void XT::loadLibrary(const std::string& name) {
     else if (name == "String")
         loadStringLibrary(this);
     else
-        execute(readFile(pathify + ".xt"), false);
+        execute(ignoreShebang(readFile(pathify + ".xt")), false);
 }
 
 Link* XT::parseFunctionDefinition() {

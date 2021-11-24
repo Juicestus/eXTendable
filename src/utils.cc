@@ -105,6 +105,10 @@ std::string readFile(const std::string& path) {
                        std::istreambuf_iterator<char>());
 }
 
+std::string ignoreShebang(const std::string& code) {
+    return (code.substr(0, 2) == "#!") ? code.substr(code.find_first_of('\n')) : code;
+}
+
 std::string exeFilename() {
     char buffer[1024];
 #ifdef _WIN32
