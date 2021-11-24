@@ -10,5 +10,7 @@ int main(int argc, char** argv) {
 
     try {
         xt->execute(ignoreShebang(readFile(argv[1])), true);
-    } catch (Exception* e) { std::printf("ERROR: %s\n", e->text.c_str()); }
+    } catch (Exception* e) { 
+        std::printf("ERROR: %s\n", e->text.c_str()); 
+    }
 }

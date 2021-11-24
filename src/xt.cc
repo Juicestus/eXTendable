@@ -153,11 +153,44 @@ void XT::addNative(const std::string& funcDesc, Callback ptr, void* userdata) {
     base->addChild(funcName, funcVar);
 }
 
+bool XT::loadDynamicLibrary(const std::string& path) {
+    std::string libPath = path + "/bin/pkg.so";
+    void* handle = NULL;
+    handle = dlopen(libPath.c_str(), RTLD_LAZY);
+	if (!handle) return false;
+	dlerror();
+
+    // subject to change
+    std::string info;
+    if ((info = readFile(path + "/xtpkg")) == "") return false;
+    std::vector<std::string> lines = splitStringIntoVector(
+            stripWhitespace(info), ';');
+
+    int i;
+    for (const std::string& line : lines) {
+        if ((i = line.find(':')) == std::string::npos) continue;
+        this->addNative("function " + line.substr(0, i),
+                        (Callback) dlsym(handle, line.substr(i + 1).c_str()),
+                        0);
+
+        if (const char* dlsymError = dlerror()) {
+            std::fprintf(stderr, "dlsym() for func %s\n", dlsymError);
+		    dlclose(handle);
+		    exit(1);
+        }
+    }
+
+    return true;
+}
+
 void XT::loadLibrary(const std::string& name) {
     std::string pathify = this->path.getDirname() + '/' + name;
 
     if (pathify.substr(pathify.length() - 3) == ".xt")
-        execute(ignoreShebang(readFile(pathify)), false);
+        return execute(ignoreShebang(readFile(pathify)), false);
+
+    else if (loadDynamicLibrary(pathify))
+        return;
 
     else if (name == "Array")
         loadArrayLibrary(this);
@@ -251,7 +284,6 @@ Link* XT::functionCall(bool& execute, Link* function, Var* parent) {
                 } else if (param->isString())
                     loadLibrary(param->getString());
             }
-
             function->var->callback(functionRoot,
                                     function->var->callbackUserData);
         } else {

@@ -13,6 +13,7 @@ bool isNumber(const std::string& str) {
         if (!isNumeric(str[i])) return false;
     return true;
 }
+
 bool isHexadecimal(char ch) {
     return ((ch >= '0') && (ch <= '9')) || ((ch >= 'a') && (ch <= 'f')) ||
            ((ch >= 'A') && (ch <= 'F'));
@@ -100,7 +101,7 @@ std::string stringFormat(const std::string& format, Args... args) {
 
 std::string readFile(const std::string& path) {
     std::ifstream inputFile(path);
-    if (!inputFile.is_open()) std::printf("Could not open file\n");
+    if (!inputFile.is_open()) return ""; // std::printf("Could not open file\n");
     return std::string(std::istreambuf_iterator<char>(inputFile),
                        std::istreambuf_iterator<char>());
 }
@@ -143,4 +144,40 @@ std::string UtilPath::getDirname() {
 std::string UtilPath::printable() {
     return path + "\nDir -> " + getDirname() + "\nFile -> " + getFilename() +
            "\nExt -> " + getExtension() + "\nBase -> " + getBasename() + "\n";
+}
+
+std::vector<std::string> splitStringIntoVector
+        (const std::string& subject, const char delimiter) {
+    std::vector<std::string> tokens;
+    std::string currentToken = "";
+    for (int i = 0; i < subject.length(); i++) {
+        if (subject[i] == delimiter) {
+            if (currentToken != "") {
+                tokens.push_back(currentToken);
+            }
+            currentToken = "";
+        } else {
+            currentToken += subject[i];
+        }
+    }
+    tokens.push_back(currentToken);
+    return tokens;
+}
+
+std::string replaceAllStringInString(std::string subject,
+        const std::string& search, const std::string& replace) {
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::string::npos) {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
+    return subject;
+}
+
+std::string stripWhitespace(const std::string& subject) {
+    std::string result = "";
+    for (const char c : subject)
+        if (!isWhitespace(c))
+            result += c;
+    return result;
 }

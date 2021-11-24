@@ -36,6 +36,7 @@ class XT {
     */
     void addNative(const std::string& funcDesc, Callback ptr, void* userdata);
 
+    bool loadDynamicLibrary(const std::string& path);
     void loadLibrary(const std::string& name);
 
     Var* getScriptVariable(const std::string& path);
