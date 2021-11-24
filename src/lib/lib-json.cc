@@ -11,6 +11,5 @@ void builtinJSONStringify(Var* c, void*) {
 void loadJSONLibrary(XT* xt) {
     xt->addNative("function JSON.stringify(obj, replacer)",
                   builtinJSONStringify, 0);
-    xt->addNative("function JSON.parse(code)",
-                  builtinEval, 0);
+    xt->addNative("function JSON.parse(code)", builtinEval, 0);
 }

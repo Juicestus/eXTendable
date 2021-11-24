@@ -22,7 +22,7 @@
 #define CREATE_LINK(LINK, VAR)                                                 \
     {                                                                          \
         if (!LINK || LINK->owned)                                              \
-            LINK = new Link(VAR);                                    \
+            LINK = new Link(VAR);                                              \
         else                                                                   \
             LINK->replaceWith(VAR);                                            \
     }

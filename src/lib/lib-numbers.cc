@@ -8,7 +8,7 @@ void builtinNumbersParseInt(Var* c, void*) {
 
 void builtinNumbersParseDouble(Var* c, void*) {
     std::string str = c->getParameter("str")->getString();
-    char *ptr;
+    char* ptr;
     double val = strtod(str.c_str(), &ptr);
     free(ptr);
     c->getReturnVar()->setDouble(val);
@@ -32,7 +32,8 @@ void builtinNumbersCharToInt(Var* c, void*) {
 
 void loadNumbersLibrary(XT* xt) {
     xt->addNative("function Numbers.parseInt(str)", builtinNumbersParseInt, 0);
-    xt->addNative("function Numbers.parseDouble(str)", builtinNumbersParseDouble, 0);
+    xt->addNative("function Numbers.parseDouble(str)",
+                  builtinNumbersParseDouble, 0);
     xt->addNative("function Numbers.valueOf(str)", builtinNumbersValueOf, 0);
     xt->addNative("function Numbers.charToInt(ch)", builtinNumbersCharToInt, 0);
 }

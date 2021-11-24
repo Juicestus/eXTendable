@@ -24,11 +24,13 @@ std::string readFile(const std::string& path);
 std::string exeFilename();
 
 class UtilPath {
-public:
+  public:
     std::string path;
 
-    UtilPath() : path("") {}
-    UtilPath(const std::string& path) : path(path) {}
+    UtilPath() : path("") {
+    }
+    UtilPath(const std::string& path) : path(path) {
+    }
 
     std::string getPath();
     std::string getFilename();

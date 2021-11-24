@@ -102,7 +102,7 @@ std::string readFile(const std::string& path) {
     std::ifstream inputFile(path);
     if (!inputFile.is_open()) std::printf("Could not open file\n");
     return std::string(std::istreambuf_iterator<char>(inputFile),
-    				   std::istreambuf_iterator<char>());
+                       std::istreambuf_iterator<char>());
 }
 
 std::string exeFilename() {
@@ -110,7 +110,7 @@ std::string exeFilename() {
 #ifdef _WIN32
     GetModuleFileName(NULL, buffer, 1024);
 #else
-    getcwd(buffer, 256); 
+    getcwd(buffer, 256);
 #endif
     return std::string(buffer);
 }
@@ -137,7 +137,6 @@ std::string UtilPath::getDirname() {
 }
 
 std::string UtilPath::printable() {
-    return path + "\nDir -> " + getDirname() + "\nFile -> " 
-            + getFilename() + "\nExt -> " + getExtension() 
-            + "\nBase -> " + getBasename() + "\n"; 
+    return path + "\nDir -> " + getDirname() + "\nFile -> " + getFilename() +
+           "\nExt -> " + getExtension() + "\nBase -> " + getBasename() + "\n";
 }

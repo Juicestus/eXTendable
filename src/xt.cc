@@ -1,6 +1,7 @@
 #include "xt.h"
 
-void importDecl(Var* c, void*) {}
+void importDecl(Var* c, void*) {
+}
 
 XT::XT(const std::string& path) {
     this->path = UtilPath(path);
@@ -33,12 +34,11 @@ void XT::trace() {
     root->trace();
 }
 
-
 void XT::execute(const std::string& code, const bool main) {
     Lexer* oldLex = l;
     std::vector<Var*> oldScopes = scopes;
-    l = new Lexer((main ? "function main() {}\n" : "") 
-            + code + (main ? "\nmain();" : ""));
+    l = new Lexer((main ? "function main() {}\n" : "") + code +
+                  (main ? "\nmain();" : ""));
 #ifdef TINYJS_CALL_STACK
     call_stack.clear();
 #endif
@@ -248,7 +248,7 @@ Link* XT::functionCall(bool& execute, Link* function, Var* parent) {
                         Var* lib = param->getArrayIndex(i);
                         if (lib->isString()) loadLibrary(lib->getString());
                     }
-                } else if (param->isString()) 
+                } else if (param->isString())
                     loadLibrary(param->getString());
             }
 
@@ -438,9 +438,9 @@ Link* XT::factor(bool& execute) {
     if (l->tk == TOK_R_FUNCTION) {
         Link* funcVar = parseFunctionDefinition();
         if (funcVar->name != XT_TEMP_NAME)
-            //TRACE("Functions not defined at statement-level are not meant to "
-            //"have a name");
-        return funcVar;
+            // TRACE("Functions not defined at statement-level are not meant to
+            // " "have a name");
+            return funcVar;
     }
     if (l->tk == TOK_R_NEW) {
         // new -> create a new object
@@ -653,8 +653,9 @@ Link* XT::ternary(bool& execute) {
 
 Link* XT::base(bool& execute) {
     Link* lhs = ternary(execute);
-    if (l->tk == '=' || l->tk == TOK_PLUSEQUAL || l->tk == TOK_MINUSEQUAL
-        || l->tk == TOK_TIMESEQUAL || l->tk == TOK_DIVIDEEQUAL || l->tk == TOK_MODEQUAL) {
+    if (l->tk == '=' || l->tk == TOK_PLUSEQUAL || l->tk == TOK_MINUSEQUAL ||
+        l->tk == TOK_TIMESEQUAL || l->tk == TOK_DIVIDEEQUAL ||
+        l->tk == TOK_MODEQUAL) {
         /* If we're assigning to this and we don't have a parent,
          * add it to the symbol table root as per JavaScript. */
         if (execute && !lhs->owned) {
@@ -687,8 +688,9 @@ Link* XT::base(bool& execute) {
             } else if (op == TOK_MODEQUAL) {
                 Var* res = lhs->var->mathsOp(rhs->var, '%');
                 lhs->replaceWith(res);
-            } else ;
-                //ASSERT(0);
+            } else
+                ;
+            // ASSERT(0);
         }
         CLEAN(rhs);
     }
@@ -723,7 +725,7 @@ void XT::statement(bool& execute) {
     } else if (l->tk == ';') {
         /* Empty statement - to allow things like ;;; */
         l->match(';');
-    //} else if (l->tk == TOK_R_VAR) {
+        //} else if (l->tk == TOK_R_VAR) {
     } else if (l->tk == TOK_R_VAR || l->tk == TOK_R_CONST) {
         int m = l->tk;
         l->match(m);
@@ -741,8 +743,7 @@ void XT::statement(bool& execute) {
                 l->match(TOK_ID);
             }
 
-            if (m == TOK_R_CONST)
-                a->makeConst();
+            if (m == TOK_R_CONST) a->makeConst();
 
             // sort out initialiser
             if (l->tk == '=') {

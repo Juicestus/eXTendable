@@ -205,7 +205,6 @@ void builtinMathRandInt(Var* c, void*) {
     c->getReturnVar()->setInt(val);
 }
 
-
 void loadMathLibrary(XT* xt) {
     xt->addNative("function Math.abs(a)", builtinMathAbs, 0);
     xt->addNative("function Math.round(a)", builtinMathRound, 0);

@@ -1,7 +1,7 @@
 function f(x) {
-    return x + 5;
+  return x + 5;
 }
 
 function main() {
-    Console.println("package.xt is the main package");
+  Console.println("package.xt is the main package");
 }

@@ -1,10 +1,7 @@
-import([
-    "Console",
-    "package.xt"
-]);
+import(["Console", "package.xt"]);
 
 Console.println(f(5));
 
 function main() {
-    Console.println("import.xt is the main package");
+  Console.println("import.xt is the main package");
 }

@@ -10,16 +10,14 @@ void builtinPrintln(Var* v, void* userdata) {
 
 void builtinReadln(Var* c, void*) {
     std::string str;
-    if (std::getline(std::cin, str))
-        c->getReturnVar()->setString(str);
+    if (std::getline(std::cin, str)) c->getReturnVar()->setString(str);
 }
 
 void builtinPromptln(Var* c, void*) {
     std::string out = c->getParameter("text")->getString();
     std::printf("%s", out.c_str());
     std::string in;
-    if (std::getline(std::cin, in))
-        c->getReturnVar()->setString(in);
+    if (std::getline(std::cin, in)) c->getReturnVar()->setString(in);
 }
 
 void loadConsoleLibrary(XT* xt) {
