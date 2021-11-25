@@ -154,7 +154,15 @@ void XT::addNative(const std::string& funcDesc, Callback ptr, void* userdata) {
 }
 
 bool XT::loadDynamicLibrary(const std::string& path) {
-    std::string libPath = path + "/bin/pkg.so";
+
+    std::string libPath = path +
+#ifdef _WIN32
+    "/bin/pkg.dll"
+#else    
+    "/bin/pkg.so"
+#endif
+    ;
+
     void* handle = NULL;
     handle = dlopen(libPath.c_str(), RTLD_LAZY);
 	if (!handle) return false;

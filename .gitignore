@@ -7,3 +7,5 @@ bin/src/*
 bin/src/*.o
 .build-cache
 test.xt
+.dll
+.so

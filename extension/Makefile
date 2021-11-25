@@ -1,4 +1,15 @@
-TARGET_EXEC ?= pkg.so
+UNAME := $(shell uname)
+
+ifeq ($(UNAME),MINGW64_NT-10.0-19043)
+	TARGET_EXEC ?= pkg.dll
+else
+ifeq ($(UNAME),MINGW32_NT-6.2)
+	TARGET_EXEC ?= pkg.dll
+else
+	TARGET_EXEC ?= pkg.so
+endif
+endif
+
 
 BUILD_DIR ?= ./bin
 SRC_DIRS ?= ./src
