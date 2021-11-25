@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "eXTendable"
-#define MyAppVersion "1.0.2"
+#define MyAppVersion "1.0.3"
 #define MyAppPublisher "Justus Languell"
 #define MyAppURL "https://www.github.com/Juicestus/extendable"
 #define MyAppExeName "xt.exe"
@@ -29,7 +29,7 @@ LicenseFile=C:\Users\User\eXTendable\package\win\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\User\eXTendable\dist\win-x86_64-installer
-OutputBaseFilename=xt-win10-installer-x64-1.0.2
+OutputBaseFilename=xt-win10-installer-x64-{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
