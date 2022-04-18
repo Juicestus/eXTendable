@@ -1,6 +1,8 @@
 #include "main.h"
 
 int main(int argc, char** argv) {
+	srand(time(NULL));
+
     if (argc < 2) {
         std::cout << "Usage: " << argv[0] << " <file.xt>" << std::endl;
         return 1;

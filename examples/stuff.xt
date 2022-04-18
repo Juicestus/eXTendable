@@ -1,0 +1,13 @@
+import(["Console", "Math", "Numbers"]);
+
+function getRandomElement(ls) {
+	return ls[Math.randInt(0, ls.length - 1)];
+}
+
+var lsInt = [1, 2, 3, 4, 5];
+Console.println(getRandomElement(lsInt));
+
+var lsStr = ["A", "B", "C", "D", "E"];
+Console.println(getRandomElement(lsStr));
+
+
