@@ -1,13 +1,13 @@
 import("Console");
 
-for (var i = 99; i > 0; i--) {
+for (var i = 99; i > 0;) {
   if (i > 1) {
     Console.print(
       i +
         " bottles of beer on the wall, " +
         i +
         " bottles of beer.\nTake one down, pass it around, " +
-        i +
+        (i--) +
         " bottles of beer on the wall.\n"
     );
   } else {
