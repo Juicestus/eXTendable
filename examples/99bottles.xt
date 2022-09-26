@@ -7,7 +7,7 @@ for (var i = 99; i > 0; i--) {
         " bottles of beer on the wall, " +
         i +
         " bottles of beer.\nTake one down, pass it around, " +
-        i +
+        (i - 1) +
         " bottles of beer on the wall.\n"
     );
   } else {
